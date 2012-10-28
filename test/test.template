@@ -1,0 +1,10 @@
+buster.spec.expose()
+
+describe '{{fname}}', ->
+  before: (done) ->
+    $ =>
+      enchant()
+      window.game = new App.Game()
+      done()
+
+  it 'should be written'

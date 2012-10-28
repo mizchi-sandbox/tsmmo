@@ -1,0 +1,18 @@
+{
+  "name": "monster",
+  "version": "0.0.0",
+  "dependencies": {
+    "grunt-typescript":"*"
+  },
+  "jam": {
+    "baseUrl": ".",
+    "packageDir": "vendor",
+    "dependencies": {
+      "jquery": "1.7.x",
+      "backbone": null,
+      "underscore": null,
+      "handlebars": null,
+      "enchantjs": "0.5.1"
+    }
+  }
+}
