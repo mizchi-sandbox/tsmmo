@@ -5,6 +5,10 @@ module App.UI {
     private cnt: number;
     public isReady: bool;
 
+    private isAnyButtonPushed(): bool{
+      return _.any(_.map(game.input, (i) => i));
+    }
+
     constructor() {
       this.cnt = 0;
     }
@@ -23,9 +27,6 @@ module App.UI {
       return (this.cnt - this.INITIAL_WAIT) % this.REPEAT_WAIT === 1;
     }
 
-    private isAnyButtonPushed(): bool{
-      return _.any(_.map(game.input, (i) => i));
-    }
   }
 
 }

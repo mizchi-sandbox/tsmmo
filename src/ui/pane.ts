@@ -25,6 +25,13 @@ module App.UI {
       this.addChild(this.window);
     }
 
+    setWindow(win: Window){
+      this.removeChild(this.window);
+      this.window = win;
+      this.addChild(this.window);
+
+    }
+
     public splitVerticaly(ratio: number): Pane[] {
       var rest = 1 - ratio;
       var left = new Pane(this,

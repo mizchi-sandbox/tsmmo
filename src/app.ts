@@ -9,8 +9,6 @@
 ///<reference path='ui/select_box/iter_cursor.ts'/>
 ///<reference path='ui/select_box/select_box.ts'/>
 ///<reference path='ui/menu.ts'/>
-///<reference path='scene/menu/main_pane.ts'/>
-///<reference path='scene/menu/sub_pane.ts'/>
 ///<reference path='ui/cursor.ts'/>
 ///<reference path='scene/base.ts'/>
 ///<reference path='scene/opening/opening.ts'/>
