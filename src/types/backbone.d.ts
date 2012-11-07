@@ -7,6 +7,7 @@ declare module Backbone {
     set(obj: any): void;
     save(attr? , opts? ): void;
     destroy(): void;
+    change(): void;
     bind(ev: string, f: Function, ctx?: any): void;
     on(ev_name: string, f: Function);
     toJSON(): any;

@@ -9,7 +9,7 @@ module App.UI {
     }
 
     update(): void {
-      var input = Game.instance.input
+      var input = App.game.input;
       if (input.right) this.x += 2;
       if (input.left)  this.x -= 2;
       if (input.up)    this.y -= 2;

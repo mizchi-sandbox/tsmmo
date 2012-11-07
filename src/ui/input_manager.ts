@@ -1,48 +1,31 @@
 module App.UI {
   export class InputManager{
-    public isListening: bool = false;
-    public hasContext: bool = false;
+    private INITIAL_WAIT: number = 5;
+    private REPEAT_WAIT : number = 3;
+    private cnt: number;
+    public isReady: bool;
 
-    initialWait: number = 18;
-    repeatWait: number = 1;
-    private input: any;
-    private cnt: number = 0;
-    private lastState: bool = false;
-
-    constructor(){
-      this.input = game.input;
+    constructor() {
+      this.cnt = 0;
     }
-
-    onPressed(): bool {
-      return _.any(
-        _.map(
-          game.input, (i) => i
-        )
-      );
-    }
-
-    isWaiting(): bool {
-      this.cnt++;
-      var isListening = _.any(
-        _.map(
-          game.input, (i) => i
-        )
-      );
-      var pressed = this.onPressed();
-      if(!pressed){
-        this.lastState = false;
-        return;
+    public ready(): bool {
+      var pushed = this.isAnyButtonPushed();
+      // ボタンを押していない
+      if(!pushed){
+        this.cnt = 0;
+        return false;
       }
+      this.cnt++;
+      if(this.cnt <= this.INITIAL_WAIT){
+        if(this.cnt == 1) return true;
+        if(this.cnt <= this.INITIAL_WAIT) return false;
+      }
+      return (this.cnt - this.INITIAL_WAIT) % this.REPEAT_WAIT === 1;
+    }
 
-      var result = this.cnt > _.cond(
-        this.lastState !== pressed,
-        this.initialWait,
-        this.repeatWait
-      );
-      console.log(result, this.lastState !== pressed)
-      this.lastState = result;
-      if(result) this.cnt = 0;
-      return result;
+    private isAnyButtonPushed(): bool{
+      return _.any(_.map(game.input, (i) => i));
     }
   }
+
 }

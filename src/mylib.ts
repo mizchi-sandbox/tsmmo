@@ -9,12 +9,21 @@ interface underscore {
   cond(tf:bool, a:any, b:any);
 }
 
+interface Input {
+  right: bool;
+  left: bool;
+  up: bool;
+  down: bool;
+  a: bool;
+  b: bool;
+}
+
 module enchant {
 
   export class Canvas extends enchant.Sprite {
     surface: enchant.Surface;
     constructor() {
-      var game = App.Game.instance;
+      var game = App.game;
       super(game.width, game.height);
       this.surface = new enchant.Surface(game.width, game.height);
     }

@@ -65,7 +65,7 @@ module enchant {
     popScene(scene: Scene);
     replaceScene(scene: Scene);
     removeScene(scene: Scene);
-    keybind(key:string, buttons:string);
+    keybind(key:number, buttons:string);
   }
   export class Node extends EventTarget {
     x: number;

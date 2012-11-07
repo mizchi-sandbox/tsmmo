@@ -1,4 +1,4 @@
-module App.UI {
+module App.Scene {
   export class MainPane extends enchant.Group{
     constructor(public parent: enchant.Group) {
       super();
@@ -7,8 +7,8 @@ module App.UI {
     }
   }
 
-  export class MainWindow extends Pane {
-    items: MenuItem[];
+  export class MainWindow extends UI.Window {
+    items: UI.MenuItem[];
     cursor_idx: number = 0;
     WIDTH = 200;
     HEIGHT = 200;

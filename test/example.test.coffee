@@ -15,7 +15,6 @@ describe 'Example', ->
   it "dom", ->
     $('body').html("<div id='x'>hogehoge</div>")
     $x = $('#x')
-    p $x.text()
     assert $x.text() is 'hogehoge'
 
   it "stubbing", ->

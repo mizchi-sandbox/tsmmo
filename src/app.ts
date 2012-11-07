@@ -2,43 +2,69 @@
 ///<reference path='types/backbone.d.ts'/>
 ///<reference path='types/enchant.d.ts'/>
 ///<reference path='mylib.ts'/>
-///<reference path='ui/pane/pane.ts'/>
+///<reference path='ui/pane.ts'/>
+///<reference path='ui/window.ts'/>
 ///<reference path='ui/input_manager.ts'/>
+///<reference path='ui/select_box/menu_item.ts'/>
+///<reference path='ui/select_box/iter_cursor.ts'/>
+///<reference path='ui/select_box/select_box.ts'/>
 ///<reference path='ui/menu.ts'/>
-///<reference path='ui/pane/main/main_pane.ts'/>
-///<reference path='ui/pane/sub/sub_pane.ts'/>
+///<reference path='scene/menu/main_pane.ts'/>
+///<reference path='scene/menu/sub_pane.ts'/>
 ///<reference path='ui/cursor.ts'/>
+///<reference path='scene/base.ts'/>
+///<reference path='scene/opening/opening.ts'/>
+///<reference path='scene/menu/menu.ts'/>
+///<reference path='scene/field/field.ts'/>
+///<reference path='scene/battle/battle.ts'/>
+///<reference path='scene/manager.ts'/>
+
 
 declare var _ : underscore;
 declare var enchant : enchant;
 
 module App {
-  export class Game extends enchant.Game {
-    public static instance: Game;
-    menu: UI.Menu;
+  export var Event = enchant.Event;
+  export var game: Main;
+
+  export class Main extends enchant.Game {
+    private scene_manager: Scene.Manager;
     constructor(){
       super()
-      Game.instance = this;
+      App.game = this;
+      this.setup();
+      this.onload = () => {
+        this.scene_manager = new Scene.Manager(this);
+        this.scene_manager.start();
+      };
+
+      var im = new UI.InputManager();
+      this.on(Event.ENTER_FRAME, () => {
+        var isReady: bool =  im.ready();
+      });
+    }
+
+    public switchScene(scene_name: string){
+      this.scene_manager.switchScene(scene_name);
+    }
+
+    private setup() {
+      this.keybind('Z'.charCodeAt(0), "a");
+      this.keybind('X'.charCodeAt(0), 'b');
       this.width = 400;
       this.height = 300;
-      this.rootScene.backgroundColor = '#bbb  ';
-
       this.fps = 24;
       this.preload('images/chara1.png');
-
-      this.onload = () => {
-        this.menu = new UI.Menu();
-        this.rootScene.addChild(this.menu);
-      };
+      this.rootScene.backgroundColor = '#bbb';
     }
   }
 }
 
 interface Window {
-  game: App.Game;
+  game: App.Main;
 }
 
 window.onload = () => {
-  window.game =  new App.Game();
+  window.game =  new App.Main();
   window.game.start();
 };
