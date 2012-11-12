@@ -13,6 +13,13 @@ grunt.initConfig({
       dest: 'lib/vendor.js'
     }
   },
+
+  sass : {
+    dist : {
+      src : ['assets/scss/**/*.scss'],
+      dest : 'lib/all.css'
+    }
+  },
   typescript: {
     base: {
       src: ['src/*.ts'],

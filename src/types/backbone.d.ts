@@ -10,13 +10,21 @@ declare module Backbone {
     change(): void;
     bind(ev: string, f: Function, ctx?: any): void;
     on(ev_name: string, f: Function);
+    off(ev_name: string, f?: Function);
+    trigger(ev_name: string, data?: any);
+
     toJSON(): any;
   }
   export class Collection {
+    models: any[];
     constructor (models? , opts? );
     bind(ev: string, f: Function, ctx?: any): void;
     collection: Model;
     length: number;
+    add(item:any);
+    remove(item:any);
+    on(ev_name: string, f: Function);
+    off(ev_name: string, f?: Function);
     create(attrs, opts? ): Collection;
     each(f: (elem: any) => void ): void;
     fetch(opts?: any): void;

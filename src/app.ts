@@ -2,6 +2,7 @@
 ///<reference path='types/backbone.d.ts'/>
 ///<reference path='types/enchant.d.ts'/>
 ///<reference path='mylib.ts'/>
+///<reference path='game/game.ts'/>
 ///<reference path='ui/pane.ts'/>
 ///<reference path='ui/window.ts'/>
 ///<reference path='ui/input_manager.ts'/>
@@ -12,7 +13,7 @@
 ///<reference path='ui/cursor.ts'/>
 ///<reference path='scene/base.ts'/>
 ///<reference path='scene/opening/opening.ts'/>
-///<reference path='scene/menu/menu.ts'/>
+///<reference path='scene/field/menu/menu.ts'/>
 ///<reference path='scene/field/field.ts'/>
 ///<reference path='scene/battle/battle.ts'/>
 ///<reference path='scene/manager.ts'/>
@@ -40,10 +41,14 @@ module App {
       this.on(Event.ENTER_FRAME, () => {
         var isReady: bool =  im.ready();
       });
+
+      var x = new X.Main;
+      x.start();
+
     }
 
     public switchScene(scene_name: string){
-      this.scene_manager.switchScene(scene_name);
+      this.scene_manager.set({context: scene_name});
     }
 
     private setup() {

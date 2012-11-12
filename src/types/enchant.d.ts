@@ -98,6 +98,7 @@ module enchant {
     constructor(w: number, h: number);
   }
   export class Label extends Entity {
+    constructor(text?, x?, y?);
     text: string;
     textAlign: string;
     _element: HTMLElement;

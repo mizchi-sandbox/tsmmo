@@ -1,6 +1,6 @@
 module App.UI {
   export class Window extends enchant.HTMLObject {
-    debug: bool = false;
+    debug: bool = true;
     constructor(x?: number, y?: number, width?: number, height?: number) {
       super();
       if(this.debug)

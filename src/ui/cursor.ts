@@ -5,6 +5,7 @@ module App.UI {
       this.x = 8;
       this.y = 8;
       this.text = '○';
+      console.log
       this.on('enterframe', this.update);
     }
 
