@@ -3,14 +3,14 @@ declare module Backbone {
     attributes: any;
     constructor (attr? , opts? );
     get(name: string): any;
-    set(name: string, val: any): void;
-    set(obj: any): void;
+    set(name: string, val?: any): void;
+    //set(obj: any): void;
     save(attr? , opts? ): void;
     destroy(): void;
     change(): void;
     bind(ev: string, f: Function, ctx?: any): void;
     on(ev_name: string, f: Function);
-    off(ev_name: string, f?: Function);
+    off(ev_name?: string, f?: Function);
     trigger(ev_name: string, data?: any);
 
     toJSON(): any;

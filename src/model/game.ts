@@ -1,10 +1,7 @@
-interface Point {
-  x: number;
-  y: number;
-}
-
 module X {
   export var ev: Main;
+  export var player: Player;
+  export var monsters: Monsters;
 
   export class Entity extends enchant.Model {
     public x: number;
@@ -79,14 +76,12 @@ module X {
   }
 
   export class Main extends enchant.Model{
-    player: Player;
-    monsters: Monsters;
-
     constructor(){
       super({cnt: 0});
       X.ev = this;
-      this.player = new Player();
-      this.monsters = new Monsters();
+      //this.player = new Player();
+      X.player = new Player();
+      X.monsters = new Monsters();
     }
 
     private update(){

@@ -12,7 +12,7 @@
       "backbone": null,
       "underscore": null,
       "handlebars": null,
-      "enchantjs": "0.5.1"
+      "enchantjs": "0.5.2"
     }
   }
 }

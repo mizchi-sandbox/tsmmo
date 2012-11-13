@@ -1,53 +1,40 @@
-_.mixin({
-  'cond': (tf, a, b) => {
-    if(tf) return a;
-    else  return b;
-  }
-});
-
-interface underscore {
-  cond(tf:bool, a:any, b:any);
-}
-
-interface Input {
-  right: bool;
-  left: bool;
-  up: bool;
-  down: bool;
-  a: bool;
-  b: bool;
-}
-
+///<reference path='types/backbone.d.ts'/>
+///<reference path='types/enchant.d.ts'/>
 module enchant {
-
-  export class Canvas extends enchant.Sprite {
-    surface: enchant.Surface;
-    constructor() {
-      var game = App.game;
-      super(game.width, game.height);
-      this.surface = new enchant.Surface(game.width, game.height);
-    }
-  }
-
   export class Model extends Backbone.Model {
     constructor(props?){
       super(props);
-      _.each(this.attributes, (val, key) => {
+      for(var key in this.attributes){
+        var val = this.attributes[key];
         Object.defineProperty(this, key,{
           get : () => this.get(key),
           set : (val) => this.set(key, val)
         });
-      });
+      }
+    }
+  }
+
+  export class Collection extends Backbone.Collection {
+    constructor(props?){
+      super(props);
+    }
+  }
+
+  export class ViewModel extends enchant.Group {
+    public model: enchant.Model;
+    constructor(model: enchant.Model){
+      super();
+      this.model = model;
     }
   }
 
   export class HTMLObject extends enchant.Label {
     view: Backbone.View;
-    constructor() {
+    constructor(html?) {
       super();
       this.view = new Backbone.View;
       this.view.setElement(this._element);
-      this.html = '';
+      this.html = html || '';
     }
     show(){
       this.css({visibility: 'visible'});

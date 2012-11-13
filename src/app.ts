@@ -1,7 +1,8 @@
 ///<reference path='types/underscore.d.ts'/>
 ///<reference path='types/backbone.d.ts'/>
 ///<reference path='types/enchant.d.ts'/>
-///<reference path='mylib.ts'/>
+///<reference path='backbone.enchant.ts'/>
+///<reference path='misc.ts'/>
 ///<reference path='game/game.ts'/>
 ///<reference path='ui/pane.ts'/>
 ///<reference path='ui/window.ts'/>

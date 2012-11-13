@@ -1,16 +1,9 @@
 module App.Scene {
 
-  export class Entity extends enchant.Group {
-    constructor(){
-      super();
-    }
-  }
-
-  export class Player extends Entity {
+  export class Player extends enchant.ViewModel {
     model: X.Player;
     constructor(){
-      super();
-      this.model = X.ev.player;
+      super(X.player);
       var label = new enchant.Label('○');
       this.addChild(label);
 
@@ -19,22 +12,26 @@ module App.Scene {
         this.y = p.y;
       });
     }
+
   }
 
-  export class Monster extends Entity {
+  export class Monster extends enchant.ViewModel {
     model: X.Monster;
-    constructor(monster){
-      super();
-      this.model = monster;
+    constructor(model: X.Monster){
+      super(model);
       var label = new enchant.Label('●');
       this.addChild(label);
-      this.model.on('change:x change:y', () => this.update());
+      this.model.on('change:x change:y', (model:X.Monster) => this.update());
       this.update();
     }
 
     update(){
       this.x = this.model.x;
       this.y = this.model.y;
+    }
+
+    destroy(){
+      this.model.off();
     }
 
   }
@@ -48,7 +45,7 @@ module App.Scene {
     collection: Backbone.Collection;
     constructor(public field){
       super();
-      this.collection = X.ev.monsters;
+      this.collection = X.monsters;
 
       this.collection.on('add', (model) => {
         var monster = new Monster(model);
@@ -56,7 +53,8 @@ module App.Scene {
       });
 
       this.collection.on('remove', (model) => {
-        var node = _.find(this.field.childNodes, (i) => i.model === model);
+        model.off();
+        var node:enchant.Node = _.find(this.field.childNodes, (i) => i.model === model);
         this.field.removeChild(node);
       });
     }
